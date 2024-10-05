@@ -8,6 +8,6 @@ and pybullet.
 
 After cloning the repo, cd to tt3_env and do "pip install -e ."
 
-Then you can run tt3_agent/tt3_agent.py.
+Then you can run tt3_agent/tt3_agent.py. A pretrained model is already provided, but you can also train a new one for yourself.
 
 Email me at adamjhung@gmail.com if you have questions!
