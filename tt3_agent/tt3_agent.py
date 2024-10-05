@@ -5,6 +5,7 @@ from stable_baselines3.common.callbacks import EvalCallback, StopTrainingOnRewar
 from stable_baselines3.common.monitor import Monitor
 from stable_baselines3.common.evaluation import evaluate_policy
 import gymnasium as gym
+import numpy as np
 env_id = "TT3"
 def train(ts):
     # use human for visualization, rgb_array for fast training
@@ -38,7 +39,7 @@ def train(ts):
 
 def test(eps):
 
-    test_env = gym.make(env_id, render_mode="human")
+    test_env = gym.make(env_id, render_mode="rgb_array")
     test_env = Monitor(test_env)
     vec_test_env = DummyVecEnv([lambda: test_env])
     vec_test_env = VecNormalize.load("logs/vec_normalize.pkl", vec_test_env)
@@ -46,8 +47,9 @@ def test(eps):
     # loads previously trained model, won't work if you haven't trained a model yet
     model = PPO.load("logs/ppo_tt")
     
-    mean_rewards, _ = evaluate_policy(model, vec_test_env, n_eval_episodes=eps, deterministic=True, return_episode_rewards=True)
-    print("Rewards:", mean_rewards)
+    rewards, _ = evaluate_policy(model, vec_test_env, n_eval_episodes=eps, deterministic=True, return_episode_rewards=True)
+    print("Rewards:", rewards)
+    print("Mean reward:", np.mean(rewards))
         
 if __name__ == '__main__':
     #train(20e7)
