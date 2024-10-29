@@ -9,7 +9,7 @@ import numpy as np
 env_id = "TT3"
 def train(ts):
     # use human for visualization, rgb_array for fast training
-    env = gym.make(env_id, render_mode="rgb_array") #render_mode="rgb_array"
+    env = gym.make(env_id, render_mode="rgb_array") #render_mode="human" to visualize
     env = Monitor(env)
     vec_env = DummyVecEnv([lambda: env])
     vec_env = VecNormalize(vec_env, 
@@ -39,7 +39,7 @@ def train(ts):
 
 def test(eps):
 
-    test_env = gym.make(env_id, render_mode="rgb_array")
+    test_env = gym.make(env_id, render_mode="human")
     test_env = Monitor(test_env)
     vec_test_env = DummyVecEnv([lambda: test_env])
     vec_test_env = VecNormalize.load("logs/vec_normalize.pkl", vec_test_env)
@@ -53,4 +53,4 @@ def test(eps):
         
 if __name__ == '__main__':
     #train(20e7)
-    test(100)
+    test(10)
