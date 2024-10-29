@@ -8,8 +8,8 @@ import gymnasium as gym
 import numpy as np
 env_id = "TT3"
 def train(ts):
-    # use human for visualization, rgb_array for fast training
-    env = gym.make(env_id, render_mode="rgb_array") #render_mode="human"
+    # use render_mode="human" for visualization, render_mode="human" for fast training
+    env = gym.make(env_id, render_mode="rgb_array")
     env = Monitor(env)
     vec_env = DummyVecEnv([lambda: env])
     vec_env = VecNormalize(vec_env, 
