@@ -9,7 +9,7 @@ import numpy as np
 env_id = "TT3"
 def train(ts):
     # use human for visualization, rgb_array for fast training
-    env = gym.make(env_id, render_mode="rgb_array") #render_mode="human" to visualize
+    env = gym.make(env_id, render_mode="rgb_array") #render_mode="human"
     env = Monitor(env)
     vec_env = DummyVecEnv([lambda: env])
     vec_env = VecNormalize(vec_env, 
@@ -52,5 +52,5 @@ def test(eps):
     print("Mean reward:", np.mean(rewards))
         
 if __name__ == '__main__':
-    #train(20e7)
+    train(20e7) # comment out to just test a trained model
     test(10)
