@@ -52,5 +52,5 @@ def test(eps):
     print("Mean reward:", np.mean(rewards))
         
 if __name__ == '__main__':
-    train(20e7) # comment out to just test a trained model
+    train(20e6) # comment out to just test a trained model
     test(10)
