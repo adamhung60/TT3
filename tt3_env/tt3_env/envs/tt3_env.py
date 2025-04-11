@@ -120,7 +120,7 @@ class TT3Env(gym.Env):
         start = [random.uniform(*self.start_x), random.uniform(*self.start_y), random.uniform(*self.start_z)]
         vz = random.uniform(*self.vz_bounds)
 
-        t = (vz + math.sqrt(vz**2 + 19.6*(start[2]+goal[2])))/9.8
+        t = (vz + math.sqrt(vz**2 + 19.6*(goal[2]-start[2])))/9.8
         vx = (goal[0] - start[0])/t
         vy = (goal[1] - start[1])/t
         v = [vx,vy,vz]
